@@ -1,7 +1,19 @@
+use clap::Parser;
+
+/// Simple program to output collatz sequence
+#[derive(Parser, Debug)]
+#[command(version, about, long_about = None)]
+struct Args {
+    /// Enter the number you wish to check
+    #[arg(short, long)]
+    number: u64,
+}
 
 fn main() {
 
-    let mut n:u64 = 1_000_000;
+    let args = Args::parse();
+
+    let mut n:u64 = args.number;
     let start:u64 = n;
     let mut count_steps:u16 = 0;
     while n > 1 {
